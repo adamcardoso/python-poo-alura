@@ -29,10 +29,12 @@ class Account:
     def get_balance(self):
         return self.__balance
 
-    def get_limit(self):
+    @property  # property decorator is used to make a method a property
+    def limit(self):
         return self.__limit
 
-    def set_limit(self, limit):
+    @limit.setter  # setter decorator is used to set the value of a property
+    def limit(self, limit):
         self.__limit = limit
     # end of getters and setters
 
