@@ -7,6 +7,7 @@ class Account:
         self.__balance = balance
         self.__limit = limit
 
+    # method to print the account details
     def bank_statement(self):
         print("Account balance {} for owner {}".format(self.__balance, self.__owner))
 
@@ -20,6 +21,20 @@ class Account:
     def transfer(self, amount, destination_account):
         self.withdraw(amount)
         destination_account.deposit(amount)
+
+    # getters and setters
+    def get_owner(self):
+        return self.__owner
+
+    def get_balance(self):
+        return self.__balance
+
+    def get_limit(self):
+        return self.__limit
+
+    def set_limit(self, limit):
+        self.__limit = limit
+    # end of getters and setters
 
     def __str__(self):
         return f"Account owner: {self.__owner}"
