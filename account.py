@@ -14,8 +14,15 @@ class Account:
     def deposit(self, amount):
         self.__balance += amount
 
+    def __can_withdraw(self, amount_to_withdraw):  # using two underscores to make it private
+        amount_available_for_withdraw = self.__balance + self.__limit
+        return amount_to_withdraw <= amount_available_for_withdraw
+
     def withdraw(self, amount):
-        self.__balance -= amount
+        if self.__can_withdraw(amount):
+            self.__balance -= amount
+        else:
+            print("Insufficient funds")
 
     # encapsulation
     def transfer(self, amount, destination_account):
@@ -23,10 +30,12 @@ class Account:
         destination_account.deposit(amount)
 
     # getters and setters
-    def get_owner(self):
+    @property
+    def owner(self):
         return self.__owner
 
-    def get_balance(self):
+    @property
+    def balance(self):
         return self.__balance
 
     @property  # property decorator is used to make a method a property
@@ -38,5 +47,10 @@ class Account:
         self.__limit = limit
     # end of getters and setters
 
-    def __str__(self):
-        return f"Account owner: {self.__owner}"
+    @staticmethod  # static method decorator is used to make a method a static method
+    def bank_code():
+        return "001"
+
+    @staticmethod
+    def all_bank_codes():
+        return {"BB": "001", "Caixa": "104", "Bradesco": "237"}
